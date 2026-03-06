@@ -51,7 +51,8 @@ def upsert_google_token(db: Session, user_id: str, provider_token: Dict[str, Any
         db.add(record)
 
     record.access_token = str(provider_token.get("access_token") or "")
-    record.refresh_token = provider_token.get("refresh_token")
+    if provider_token.get("refresh_token"):
+        record.refresh_token = provider_token.get("refresh_token")
     record.token_type = provider_token.get("token_type")
     scope = provider_token.get("scope")
     if isinstance(scope, list):
@@ -111,4 +112,3 @@ def build_gmail_service(creds: Credentials):
 
 def build_calendar_service(creds: Credentials):
     return build("calendar", "v3", credentials=creds, cache_discovery=False)
-
