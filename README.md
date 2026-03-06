@@ -39,6 +39,17 @@ In `ENVIRONMENT=dev`, you can call authenticated endpoints by passing:
 
 - `X-Debug-User: you@example.com`
 
+### Demo API key (no OAuth)
+
+If you want to deploy without Google OAuth (e.g., day-1 demo), set:
+
+- `DEMO_API_KEY` (random string)
+- `DEMO_USER_EMAIL` (your email)
+
+Then call authenticated endpoints with:
+
+- `X-Api-Key: <your DEMO_API_KEY>`
+
 ## Google OAuth (Gmail + Calendar)
 
 You’ll need a Google Cloud OAuth client with:

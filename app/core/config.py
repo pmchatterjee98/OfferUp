@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     session_secret_key: str = Field(default="dev-secret-change-me", validation_alias="SESSION_SECRET_KEY")
     session_cookie_name: str = Field(default="nc_session", validation_alias="SESSION_COOKIE_NAME")
 
+    demo_api_key: Optional[str] = Field(default=None, validation_alias="DEMO_API_KEY")
+    demo_user_email: str = Field(default="demo@example.com", validation_alias="DEMO_USER_EMAIL")
+
     google_client_id: Optional[str] = Field(default=None, validation_alias="GOOGLE_CLIENT_ID")
     google_client_secret: Optional[str] = Field(default=None, validation_alias="GOOGLE_CLIENT_SECRET")
     google_redirect_uri: str = Field(

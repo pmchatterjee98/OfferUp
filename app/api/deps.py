@@ -25,7 +25,16 @@ def current_user_dep(
     db: Session = Depends(db_dep),
     settings: Settings = Depends(settings_dep),
     x_debug_user: Optional[str] = Header(default=None, alias="X-Debug-User"),
+    x_api_key: Optional[str] = Header(default=None, alias="X-Api-Key"),
 ) -> User:
+    if settings.demo_api_key and x_api_key and x_api_key == settings.demo_api_key:
+        user = db.query(User).filter(User.email == settings.demo_user_email).one_or_none()
+        if user is None:
+            user = User(email=settings.demo_user_email)
+            db.add(user)
+            db.flush()
+        return user
+
     if settings.environment == "dev" and x_debug_user:
         user = db.query(User).filter(User.email == x_debug_user).one_or_none()
         if user is None:
@@ -41,4 +50,3 @@ def current_user_dep(
     if user is None:
         raise HTTPException(status_code=401, detail="Invalid session. Connect Google again.")
     return user
-
