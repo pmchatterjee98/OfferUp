@@ -30,7 +30,12 @@ async def connect_google(request: Request, settings=Depends(settings_dep)):
     if not settings.google_client_id or not settings.google_client_secret:
         raise HTTPException(status_code=400, detail="Google OAuth not configured")
     oauth = get_google_oauth(settings)
-    return await oauth.google.authorize_redirect(request, settings.google_redirect_uri)
+    return await oauth.google.authorize_redirect(
+        request,
+        settings.google_redirect_uri,
+        access_type="offline",
+        prompt="consent",
+    )
 
 
 @router.get("/callback")
