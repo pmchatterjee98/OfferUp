@@ -1,0 +1,21 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# local env / secrets
+.env
+.env.*
+
+# db / app data
+data/
+
+# editor
+.vscode/
+.idea/
+

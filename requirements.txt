@@ -1,0 +1,17 @@
+fastapi>=0.103
+uvicorn[standard]>=0.23
+gunicorn>=21.2
+sqlalchemy>=2.0
+pydantic>=2.3
+pydantic-settings>=2.0
+python-multipart>=0.0.6
+httpx>=0.24
+authlib>=1.2
+itsdangerous>=2.1
+
+# Google APIs
+google-api-python-client>=2.100
+google-auth>=2.23
+
+# DB drivers
+psycopg2-binary>=2.9
